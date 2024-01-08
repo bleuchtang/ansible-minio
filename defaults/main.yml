@@ -22,6 +22,9 @@ minio_server_envfile: /etc/default/minio
 # Directory to store minio config. Will default to minio_user/.minio if not defined
 minio_config_dir: "/etc/minio"
 
+# Minio configuration file
+minio_server_config_file: "{{ minio_config_dir }}/config.yml"
+
 # Minio server ip/fqdn and port. This makes up the server_addr below
 minio_server_ip: ""
 minio_server_port: "9000"
@@ -43,6 +46,14 @@ minio_server_make_datadirs: true
 minio_server_args:
   - /var/lib/minio
 
+# MinIO server pools list.
+minio_server_pools:
+  -
+    - 'https://server-example-pool1:9000/mnt/disk{1...4}/'
+    - 'https://server{1...2}-pool1:9000/mnt/disk{1...4}/'
+    - 'https://server3-pool1:9000/mnt/disk{1...4}/'
+    - 'https://server4-pool1:9000/mnt/disk{1...4}/'
+
 # Additional environment variables to be set in minio server environment
 minio_server_env_extra: |
   MINIO_SITE_REGION=""
@@ -61,3 +72,4 @@ minio_install_client: true
 
 # TODO: in future
 minio_enable_ssl: false
+minio_cert_dir: "{{ minio_config_dir }}/certs"

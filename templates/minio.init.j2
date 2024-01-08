@@ -27,7 +27,7 @@ USER="{{ minio_user }}"
 [ -r "{{ minio_server_envfile }}" ] && . {{ minio_server_envfile }}
 
 # Set the DAEMON_ARGS variable
-DAEMON_ARGS="server $MINIO_OPTS"
+DAEMON_ARGS="server --config {{ minio_server_config_file }}"
 
 # Specifies the maximum file descriptor number that can be opened by this process
 ulimit -n 65536

@@ -1,0 +1,8 @@
+version: v1
+address: '{{ minio_server_addr }}'
+rootUser: '{{ minio_root_username }}'
+rootPassword: '{{ minio_root_password }}'
+console-address: '{{ minio_console_addr }}'
+certs-dir: '{{ minio_cert_dir }}'
+pools:
+{{ minio_server_pools | to_nice_yaml(indent=2) }}

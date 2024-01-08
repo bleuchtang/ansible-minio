@@ -82,10 +82,22 @@ Example:
 
 ```yaml
 minio_server_datadirs:
-  - '/minio-data'
+  - '/mnt/disk1'
+  - '/mnt/disk2'
+  - '/mnt/disk3'
+  - '/mnt/disk4'
 
-minio_server_args:
-  - 'https://server{1...4}/minio-data'
+minio_server_pools:
+  -
+    - 'https://server-example-pool1:9000/mnt/disk{1...4}/'
+    - 'https://server{1...2}-pool1:9000/mnt/disk{1...4}/'
+    - 'https://server3-pool1:9000/mnt/disk{1...4}/'
+    - 'https://server4-pool1:9000/mnt/disk{1...4}/'
+  -
+    - 'https://server-example-pool2:9000/mnt/disk{1...4}/'
+    - 'https://server{1...2}-pool2:9000/mnt/disk{1...4}/'
+    - 'https://server3-pool2:9000/mnt/disk{1...4}/'
+    - 'https://server4-pool2:9000/mnt/disk{1...4}/'
 ```
 
 Additional environment variables to be set in MinIO server environment
